@@ -75,18 +75,18 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   }
 
 
-  drawFace = (resizedDetections, displaySize,eyes)  =>{
+  drawFace = (resizedDetections, displaySize ,eyes)  =>{
     const {globalFace} = this.faceApiService;
     this.overCanvas.getContext('2d').clearRect(0,0, displaySize.width, displaySize.height)
     // globalFace.draw.drawDetections(this.overCanvas, resizedDetections);
     // globalFace.draw.drawFaceLandmarks(this.overCanvas, resizedDetections);
 
-    const scale = this.width / displaySize.with;
-    console.log('sccale',displaySize.with);
+    const scale =this.width / displaySize.width;
+    console.log('sccale',displaySize.width);
     
     const elementFilterEye = document.querySelector('.filter-eye');
-    this.renderer2.setStyle(elementFilterEye, 'left',`${eyes.left[0].x }px`);
-    this.renderer2.setStyle(elementFilterEye, 'top',`${eyes.left[0].y }px`);
+    this.renderer2.setStyle(elementFilterEye, 'left', `${eyes.left[0].x * scale}px`);
+    this.renderer2.setStyle(elementFilterEye, 'top', `${eyes.left[0].y }px`);
   }
 
 
